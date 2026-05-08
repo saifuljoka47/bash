@@ -1,0 +1,25 @@
+#!/bin/bash
+user="saiful"
+host="192.168.140.140"
+echo "trying to login remote user using bash script"
+ssh $user@$host "date"
+echo " "
+echo -e "Remote server up time show below"
+ssh $user@$host "uptime"
+echo " "
+echo -e "Remote Server Hostname show below"
+ssh $user@$host "hostnamectl"
+echo -e "who login to this pc"
+ssh $user@$host "w"
+echo -e "eof practice"
+ssh $user@$host << 'EOF'
+echo "========system info=============="
+echo "Hostname: $(hostname)"
+echo "Date: $(date)"
+echo "Uptime: $(uptime)"
+echo "Disk Space: $(df -h -x iso9660)"
+echo -e "show cpu:$(nproc)"
+echo -e "show cpu details: $(lscpu)"
+echo -e "show users: $(cat /etc/passwd)"
+EOF
+
