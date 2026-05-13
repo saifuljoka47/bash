@@ -1,9 +1,9 @@
 #!/bin/bash
 get_weather() {
-	local city=$1
+	local $1
 
-	city_encoded=$(echo "$city" | sed 's/ /%20/g')
-	echo "weather report :$city"
+	city_encoded=$(echo $1 | sed 's/ /%20/g')
+	echo "weather report :$1"
 	curl -s "wttr.in/${city_encoded}?format=3" 2>/dev/null
 	if [ $? -ne 0 ]; then
 		echo "No weather report found"
@@ -12,7 +12,7 @@ get_weather() {
 }
 echo "==============Weather checker===================="
 echo ""
-echo -n "type your city name like dhaka"
+echo -e "type your city name like dhaka"
 read city
 if [ -n "$city" ]; then
 	echo " "
